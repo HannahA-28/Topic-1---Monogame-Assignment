@@ -28,6 +28,13 @@ namespace Topic_1___Monogame_Assignment
         Texture2D sheepTexture;
         Rectangle sheepRect;
 
+        Texture2D goatTexture;
+        Rectangle goatRect;
+
+        SpriteFont titleFont;
+
+        float angle;
+
 
         public Game1()
         {
@@ -46,10 +53,13 @@ namespace Topic_1___Monogame_Assignment
             _graphics.ApplyChanges();
 
             cowRect = new Rectangle(300, 300, 100, 100);
-            horseRect = new Rectangle(0, 300, 150, 150);
+            horseRect = new Rectangle(0, 300, 175, 175);
             pigRect = new Rectangle(700, 400, 100, 100);
             chickenRect = new Rectangle(200, 480, 70, 70);
             sheepRect = new Rectangle(550, 300, 100, 100);
+            goatRect = new Rectangle(500, 450, 120, 120);
+
+            angle = 1.5f;
 
             base.Initialize();
         }
@@ -65,6 +75,9 @@ namespace Topic_1___Monogame_Assignment
             pigTexture = Content.Load<Texture2D>("pig");
             chickenTexture = Content.Load<Texture2D>("chicken");
             sheepTexture = Content.Load<Texture2D>("sheep");
+            goatTexture = Content.Load<Texture2D>("goat");
+
+            titleFont = Content.Load<SpriteFont>("TitleFont");
         }
 
         protected override void Update(GameTime gameTime)
@@ -86,11 +99,13 @@ namespace Topic_1___Monogame_Assignment
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(backgroundTexture, window, Color.White);
-            _spriteBatch.Draw(cowTexture, cowRect, Color.White);
+            _spriteBatch.DrawString(titleFont, "Welcome to the farm!", new Vector2(75, 10), Color.Black);
+            _spriteBatch.Draw(cowTexture, cowRect, null, Color.White, angle, new Vector2(cowTexture.Width / 3, cowTexture.Height / 3), SpriteEffects.None, 1f);
             _spriteBatch.Draw(horseTexture, horseRect, Color.White);
             _spriteBatch.Draw(pigTexture, pigRect, Color.White);
             _spriteBatch.Draw(chickenTexture, chickenRect, Color.White);
             _spriteBatch.Draw(sheepTexture, sheepRect, Color.White);
+            _spriteBatch.Draw(goatTexture, goatRect, null, Color.White, angle, new Vector2(goatTexture.Width / 2, goatTexture.Height / 2), SpriteEffects.None, 1f);
 
             _spriteBatch.End();
 
